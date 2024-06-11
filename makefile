@@ -1,8 +1,12 @@
 .PHONY: build tidy docker test clean vendor
 
+GO_PROXY=https://goproxy.cn,direct
+
 # VERSION file is not needed for local development, In the CI/CD pipeline, a temporary VERSION file is written
 # if you need a specific version, just override below
-APPVERSION=$(shell cat ./VERSION 2>/dev/null || echo 0.0.0)
+VERSION=$(shell (git branch --show-current | sed 's/^release\///' | sed 's/^v//') || echo 0.0.0)
+#DOCKER_TAG=$(VERSION)-$(shell git log -1 --format=%h)
+DOCKER_TAG=$(VERSION)
 
 # This pulls the version of the SDK from the go.mod file. If the SDK is the only required module,
 # it must first remove the word 'required' so the offset of $2 is the same if there are multiple required modules
@@ -10,7 +14,7 @@ SDKVERSION=$(shell cat ./go.mod | grep 'github.com/agile-edgex/app-functions-sdk
 
 MICROSERVICE=app-service-configurable
 GOFLAGS=-ldflags "-X github.com/agile-edgex/app-functions-sdk-go/v3/internal.SDKVersion=$(SDKVERSION) \
-                   -X github.com/agile-edgex/app-functions-sdk-go/v3/internal.ApplicationVersion=$(APPVERSION)" \
+                   -X github.com/agile-edgex/app-functions-sdk-go/v3/internal.ApplicationVersion=$(VERSION)" \
                    -trimpath -mod=readonly
 GOTESTFLAGS?=-race
 
@@ -31,12 +35,10 @@ tidy:
 docker:
 	docker build \
 		--build-arg ADD_BUILD_TAGS=$(ADD_BUILD_TAGS) \
-	    --build-arg http_proxy \
-	    --build-arg https_proxy \
+		--build-arg GO_PROXY=$(GO_PROXY) \
 		-f Dockerfile \
 		--label "git_sha=$(GIT_SHA)" \
-		-t agile-edgex/app-service-configurable:$(GIT_SHA) \
-		-t agile-edgex/app-service-configurable:${APPVERSION}-dev \
+		-t agile-edgex/app-service-configurable:${DOCKER_TAG} \
 		.
 
 docker-nats:
@@ -60,6 +62,3 @@ test: unittest lint
 
 clean:
 	rm -f $(MICROSERVICE)
-
-vendor:
-	go mod vendor

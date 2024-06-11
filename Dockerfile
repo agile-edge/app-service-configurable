@@ -15,34 +15,20 @@
 #
 
 #build stage
-ARG BASE=golang:1.21-alpine3.18
-FROM ${BASE} AS builder
-
-ARG ALPINE_PKG_BASE="make git"
-ARG ALPINE_PKG_EXTRA=""
+FROM golang:1.21-bookworm AS builder
 
 ARG ADD_BUILD_TAGS=""
 
-RUN apk add --update --no-cache ${ALPINE_PKG_BASE} ${ALPINE_PKG_EXTRA}
 WORKDIR /app
 
-COPY go.mod vendor* ./
-RUN [ ! -d "vendor" ] && go mod download all || echo "skipping..."
-
 COPY . .
+ARG GO_PROXY="https://goproxy.cn,direct"
+ENV GOPROXY=$GO_PROXY
 ARG MAKE="make -e ADD_BUILD_TAGS=$ADD_BUILD_TAGS build"
 RUN $MAKE
 
-#final stage
-FROM alpine:3.18
-LABEL license='SPDX-License-Identifier: Apache-2.0' \
-  copyright='Copyright (c) 2023: Intel'
-LABEL Name=app-service-configurable Version=${VERSION}
-
-# dumb-init is required as security-bootstrapper uses it in the entrypoint script
-RUN apk add --update --no-cache ca-certificates dumb-init
-# Ensure using latest versions of all installed packages to avoid any recent CVEs
-RUN apk --no-cache upgrade
+#Next image - Copy built Go binary into new workspace
+FROM debian:bookworm-slim
 
 COPY --from=builder /app/Attribution.txt /Attribution.txt
 COPY --from=builder /app/LICENSE /LICENSE
