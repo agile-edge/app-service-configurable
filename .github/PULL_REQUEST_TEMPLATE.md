@@ -1,10 +1,10 @@
 <!-- Expected Commit Message Description (imported automatically by GitHub) -->
-<!-- Must conform to [conventional commits guidelines](https://github.com/edgexfoundry/app-service-configurable/blob/main/.github/CONTRIBUTING.md) -->
+<!-- Must conform to [conventional commits guidelines](https://github.com/agile-edgex/app-service-configurable/blob/main/.github/CONTRIBUTING.md) -->
 <!-- Expected Commit message must contain Closes/Fixes #IssueNumber statement when there is a related issue -->
 
 <!-- Add additional detailed description of need for change if no related issue -->
 
-**If your build fails**  due to your commit message not passing the build checks, please review the guidelines here: https://github.com/edgexfoundry/app-service-configurable/blob/main/.github/CONTRIBUTING.md
+**If your build fails**  due to your commit message not passing the build checks, please review the guidelines here: https://github.com/agile-edgex/app-service-configurable/blob/main/.github/CONTRIBUTING.md
 
 ## PR Checklist
 Please check if your PR fulfills the following requirements:
@@ -20,4 +20,4 @@ Please check if your PR fulfills the following requirements:
 <!-- How can the reviewers test your change? -->
 
 ## New Dependency Instructions (If applicable)
-<!-- Please follow [vetting instructions](https://wiki.edgexfoundry.org/display/FA/Vetting+Process+for+3rd+Party+Dependencies) and place results here -->
+<!-- Please follow [vetting instructions](https://wiki.agile-edgex.org/display/FA/Vetting+Process+for+3rd+Party+Dependencies) and place results here -->

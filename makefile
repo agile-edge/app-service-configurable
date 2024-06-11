@@ -6,11 +6,11 @@ APPVERSION=$(shell cat ./VERSION 2>/dev/null || echo 0.0.0)
 
 # This pulls the version of the SDK from the go.mod file. If the SDK is the only required module,
 # it must first remove the word 'required' so the offset of $2 is the same if there are multiple required modules
-SDKVERSION=$(shell cat ./go.mod | grep 'github.com/edgexfoundry/app-functions-sdk-go/v3 v' | sed 's/require//g' | awk '{print $$2}')
+SDKVERSION=$(shell cat ./go.mod | grep 'github.com/agile-edgex/app-functions-sdk-go/v3 v' | sed 's/require//g' | awk '{print $$2}')
 
 MICROSERVICE=app-service-configurable
-GOFLAGS=-ldflags "-X github.com/edgexfoundry/app-functions-sdk-go/v3/internal.SDKVersion=$(SDKVERSION) \
-                   -X github.com/edgexfoundry/app-functions-sdk-go/v3/internal.ApplicationVersion=$(APPVERSION)" \
+GOFLAGS=-ldflags "-X github.com/agile-edgex/app-functions-sdk-go/v3/internal.SDKVersion=$(SDKVERSION) \
+                   -X github.com/agile-edgex/app-functions-sdk-go/v3/internal.ApplicationVersion=$(APPVERSION)" \
                    -trimpath -mod=readonly
 GOTESTFLAGS?=-race
 
@@ -35,8 +35,8 @@ docker:
 	    --build-arg https_proxy \
 		-f Dockerfile \
 		--label "git_sha=$(GIT_SHA)" \
-		-t edgexfoundry/app-service-configurable:$(GIT_SHA) \
-		-t edgexfoundry/app-service-configurable:${APPVERSION}-dev \
+		-t agile-edgex/app-service-configurable:$(GIT_SHA) \
+		-t agile-edgex/app-service-configurable:${APPVERSION}-dev \
 		.
 
 docker-nats:
