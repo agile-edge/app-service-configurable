@@ -14,7 +14,7 @@ For latest documentation please visit https://docs.agile-edgex.org/latest/micros
 
 ## Build Prerequisites
 
-Please see the [edgex-go README](https://github.com/agile-edgex/edgex-go/blob/main/README.md#prerequisites).
+Please see the [edgex README](https://github.com/agile-edgex/edgex/blob/main/README.md#prerequisites).
 
 ## Build with NATS Messaging
 Currently, the NATS Messaging capability (NATS MessageBus) is opt-in at build time.
