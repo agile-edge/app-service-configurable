@@ -1,5 +1,6 @@
 .PHONY: build tidy docker test clean vendor
 
+PLATFORM=linux/amd64,linux/arm64,linux/arm/v7
 GO_PROXY=https://goproxy.cn,direct
 
 # VERSION file is not needed for local development, In the CI/CD pipeline, a temporary VERSION file is written
@@ -33,12 +34,21 @@ tidy:
 
 # NOTE: This is only used for local development. Jenkins CI does not use this make target
 docker:
-	docker build \
+	docker buildx build --platform $(PLATFORM) \
 		--build-arg ADD_BUILD_TAGS=$(ADD_BUILD_TAGS) \
 		--build-arg GO_PROXY=$(GO_PROXY) \
 		-f Dockerfile \
 		--label "git_sha=$(GIT_SHA)" \
-		-t agile-edgex/app-service-configurable:${DOCKER_TAG} \
+		--push \
+		-t magicletters/app-service-configurable:${DOCKER_TAG} \
+		.
+	docker buildx build --platform $(PLATFORM) \
+		--build-arg ADD_BUILD_TAGS=$(ADD_BUILD_TAGS) \
+		--build-arg GO_PROXY=$(GO_PROXY) \
+		-f Dockerfile.alpine \
+		--label "git_sha=$(GIT_SHA)" \
+		--push \
+		-t magicletters/app-service-configurable:${DOCKER_TAG}-alpine \
 		.
 
 docker-nats:
