@@ -40,7 +40,7 @@ docker:
 		-f Dockerfile \
 		--label "git_sha=$(GIT_SHA)" \
 		--push \
-		-t magicletters/app-service-configurable:${DOCKER_TAG} \
+		-t ccr.ccs.tencentyun.com/agile-edgex/app-service-configurable:${DOCKER_TAG} \
 		.
 	docker buildx build --platform $(PLATFORM) \
 		--build-arg ADD_BUILD_TAGS=$(ADD_BUILD_TAGS) \
@@ -48,7 +48,7 @@ docker:
 		-f Dockerfile.alpine \
 		--label "git_sha=$(GIT_SHA)" \
 		--push \
-		-t magicletters/app-service-configurable:${DOCKER_TAG}-alpine \
+		-t ccr.ccs.tencentyun.com/agile-edgex/app-service-configurable:${DOCKER_TAG}-alpine \
 		.
 
 docker-nats:
