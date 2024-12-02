@@ -1,17 +1,17 @@
-module github.com/agile-edgex/app-service-configurable
+module github.com/agile-edge/app-service-configurable
 
 go 1.21
 
-require github.com/agile-edgex/app-functions-sdk-go/v3 v3.1.2
+require github.com/agile-edge/app-functions-sdk-go/v3 v3.1.3
 
 require (
 	github.com/Microsoft/go-winio v0.6.1 // indirect
-	github.com/agile-edgex/go-mod-bootstrap/v3 v3.1.2 // indirect
-	github.com/agile-edgex/go-mod-configuration/v3 v3.1.2 // indirect
-	github.com/agile-edgex/go-mod-core-contracts/v3 v3.1.2 // indirect
-	github.com/agile-edgex/go-mod-messaging/v3 v3.1.2 // indirect
-	github.com/agile-edgex/go-mod-registry/v3 v3.1.2 // indirect
-	github.com/agile-edgex/go-mod-secrets/v3 v3.1.2 // indirect
+	github.com/agile-edge/go-mod-bootstrap/v3 v3.1.3 // indirect
+	github.com/agile-edge/go-mod-configuration/v3 v3.1.3 // indirect
+	github.com/agile-edge/go-mod-core-contracts/v3 v3.1.3 // indirect
+	github.com/agile-edge/go-mod-messaging/v3 v3.1.3 // indirect
+	github.com/agile-edge/go-mod-registry/v3 v3.1.3 // indirect
+	github.com/agile-edge/go-mod-secrets/v3 v3.1.3 // indirect
 	github.com/armon/go-metrics v0.4.1 // indirect
 	github.com/cenkalti/backoff v2.2.1+incompatible // indirect
 	github.com/diegoholiveira/jsonlogic/v3 v3.3.2 // indirect

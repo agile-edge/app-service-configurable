@@ -19,8 +19,8 @@ package main
 import (
 	"os"
 
-	"github.com/agile-edgex/app-functions-sdk-go/v3/pkg"
-	"github.com/agile-edgex/app-functions-sdk-go/v3/pkg/interfaces"
+	"github.com/agile-edge/app-functions-sdk-go/v3/pkg"
+	"github.com/agile-edge/app-functions-sdk-go/v3/pkg/interfaces"
 )
 
 const (
