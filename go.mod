@@ -2,13 +2,19 @@ module github.com/agile-edge/app-service-configurable
 
 go 1.21
 
-require github.com/agile-edge/app-functions-sdk-go/v3 v3.1.3
+require github.com/agile-edge/app-functions-sdk-go/v3 v3.1.4
+
+require (
+	go.uber.org/multierr v1.10.0 // indirect
+	go.uber.org/zap v1.27.0 // indirect
+	gopkg.in/natefinch/lumberjack.v2 v2.2.1 // indirect
+)
 
 require (
 	github.com/Microsoft/go-winio v0.6.1 // indirect
-	github.com/agile-edge/go-mod-bootstrap/v3 v3.1.3 // indirect
+	github.com/agile-edge/go-mod-bootstrap/v3 v3.1.4 // indirect
 	github.com/agile-edge/go-mod-configuration/v3 v3.1.3 // indirect
-	github.com/agile-edge/go-mod-core-contracts/v3 v3.1.3 // indirect
+	github.com/agile-edge/go-mod-core-contracts/v3 v3.1.4 // indirect
 	github.com/agile-edge/go-mod-messaging/v3 v3.1.3 // indirect
 	github.com/agile-edge/go-mod-registry/v3 v3.1.3 // indirect
 	github.com/agile-edge/go-mod-secrets/v3 v3.1.3 // indirect
@@ -20,8 +26,6 @@ require (
 	github.com/fxamacker/cbor/v2 v2.6.0 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
 	github.com/go-jose/go-jose/v4 v4.0.1 // indirect
-	github.com/go-kit/log v0.2.1 // indirect
-	github.com/go-logfmt/logfmt v0.5.1 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-playground/validator/v10 v10.15.5 // indirect

@@ -49,13 +49,9 @@ COPY --from=builder /app/app-service-configurable /app-service-configurable
 
 EXPOSE 48095
 
-# Must always specify the profile using
-# environment:
-#   - EDGEX_PROFILE: <profile>
-# or use
-# command: "-profile=<profile>"
-# If not you will recive error:
-# SDK initialization failed: Could not load configuration file (./res/configuration.yaml)...
+ENV TZ=Asia/Shanghai
+RUN mkdir -p /var/log/agile-edge && chown -R 1000:1000 /var/log/agile-edge
+USER 1000:1000
 
 ENTRYPOINT ["/app-service-configurable"]
 CMD ["-cp=consul.http://edgex-core-consul:8500", "--registry"]

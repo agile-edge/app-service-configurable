@@ -32,8 +32,9 @@ build-nats:
 tidy:
 	go mod tidy
 
-# NOTE: This is only used for local development. Jenkins CI does not use this make target
-docker:
+docker: docker-debian docker-alpine
+
+docker-debian:
 	docker buildx build --platform $(PLATFORM) \
 		--build-arg ADD_BUILD_TAGS=$(ADD_BUILD_TAGS) \
 		--build-arg GO_PROXY=$(GO_PROXY) \
@@ -42,6 +43,8 @@ docker:
 		--push \
 		-t ccr.ccs.tencentyun.com/agile-edge/app-service-configurable:${DOCKER_TAG} \
 		.
+
+docker-alpine:
 	docker buildx build --platform $(PLATFORM) \
 		--build-arg ADD_BUILD_TAGS=$(ADD_BUILD_TAGS) \
 		--build-arg GO_PROXY=$(GO_PROXY) \
