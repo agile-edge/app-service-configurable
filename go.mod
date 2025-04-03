@@ -1,23 +1,23 @@
-module github.com/edgexfoundry/app-service-configurable
+module github.com/agile-edge/app-service-configurable
 
 go 1.23
 
-require github.com/edgexfoundry/app-functions-sdk-go/v4 v4.0.0
+require github.com/agile-edge/app-functions-sdk-go/v4 v4.0.0
 
 require (
 	github.com/Microsoft/go-winio v0.6.2 // indirect
+	github.com/agile-edge/go-mod-bootstrap/v4 v4.0.3 // indirect
+	github.com/agile-edge/go-mod-configuration/v4 v4.0.1 // indirect
+	github.com/agile-edge/go-mod-core-contracts/v4 v4.0.1 // indirect
+	github.com/agile-edge/go-mod-messaging/v4 v4.0.1 // indirect
+	github.com/agile-edge/go-mod-registry/v4 v4.0.1 // indirect
+	github.com/agile-edge/go-mod-secrets/v4 v4.0.1 // indirect
 	github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2 // indirect
 	github.com/barkimedes/go-deepcopy v0.0.0-20220514131651-17c30cfc62df // indirect
 	github.com/blang/semver/v4 v4.0.0 // indirect
 	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
 	github.com/diegoholiveira/jsonlogic/v3 v3.7.4 // indirect
 	github.com/eclipse/paho.mqtt.golang v1.5.0 // indirect
-	github.com/edgexfoundry/go-mod-bootstrap/v4 v4.0.3 // indirect
-	github.com/edgexfoundry/go-mod-configuration/v4 v4.0.1 // indirect
-	github.com/edgexfoundry/go-mod-core-contracts/v4 v4.0.1 // indirect
-	github.com/edgexfoundry/go-mod-messaging/v4 v4.0.1 // indirect
-	github.com/edgexfoundry/go-mod-registry/v4 v4.0.1 // indirect
-	github.com/edgexfoundry/go-mod-secrets/v4 v4.0.1 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
 	github.com/fullsailor/pkcs7 v0.0.0-20190404230743-d7302db945fa // indirect
 	github.com/fxamacker/cbor/v2 v2.7.0 // indirect
@@ -124,6 +124,7 @@ require (
 	google.golang.org/grpc v1.70.0 // indirect
 	google.golang.org/protobuf v1.36.3 // indirect
 	gopkg.in/go-jose/go-jose.v2 v2.6.3 // indirect
+	gopkg.in/natefinch/lumberjack.v2 v2.2.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	nhooyr.io/websocket v1.8.17 // indirect
 )

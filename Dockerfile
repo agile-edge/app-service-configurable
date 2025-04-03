@@ -18,16 +18,18 @@
 ARG BASE=golang:1.23-alpine3.20
 FROM ${BASE} AS builder
 
-ARG ALPINE_PKG_BASE="make git"
-ARG ALPINE_PKG_EXTRA=""
-
 ARG ADD_BUILD_TAGS=""
 
-RUN apk add --update --no-cache ${ALPINE_PKG_BASE} ${ALPINE_PKG_EXTRA}
 WORKDIR /app
 
-COPY go.mod vendor* ./
-RUN [ ! -d "vendor" ] && go mod download all || echo "skipping..."
+RUN sed -i 's|https://dl-cdn.alpinelinux.org|https://mirrors.aliyun.com|g' /etc/apk/repositories && \
+    apk add --update --no-cache make git
+
+ARG GO_PROXY="https://goproxy.cn,direct"
+ENV GOPROXY=$GO_PROXY
+
+COPY go.* ./
+RUN go mod download
 
 COPY . .
 ARG MAKE="make -e ADD_BUILD_TAGS=$ADD_BUILD_TAGS build"
@@ -39,10 +41,9 @@ LABEL license='SPDX-License-Identifier: Apache-2.0' \
   copyright='Copyright (c) 2023: Intel'
 LABEL Name=app-service-configurable Version=${VERSION}
 
-# dumb-init is required as security-bootstrapper uses it in the entrypoint script
-RUN apk add --update --no-cache ca-certificates dumb-init
-# Ensure using latest versions of all installed packages to avoid any recent CVEs
-RUN apk --no-cache upgrade
+RUN sed -i 's|https://dl-cdn.alpinelinux.org|https://mirrors.aliyun.com|g' /etc/apk/repositories && \
+    apk add --update --no-cache ca-certificates dumb-init tzdata && \
+    apk --no-cache upgrade
 
 COPY --from=builder /app/Attribution.txt /Attribution.txt
 COPY --from=builder /app/LICENSE /LICENSE
@@ -60,5 +61,5 @@ EXPOSE 48095
 # SDK initialization failed: Could not load configuration file (./res/configuration.yaml)...
 
 ENTRYPOINT ["/app-service-configurable"]
-CMD ["-cp=keeper.http://edgex-core-keeper:59890", "--registry"]
+CMD ["-cp=keeper.http://core-keeper:59890", "--registry"]
 
